@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+}
+
+.nav {
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  background-color: black;
+}
+
+.nav button {
+  width: auto;
+}

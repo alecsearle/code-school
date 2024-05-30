@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  gap: 25px;
+}
+
+#box {
+  height: 400px;
+  width: 400px;
+  border: 1px solid black;
+}
+
+#inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* tablet devices */
+@media and (max-width: 960px) {
+}
+
+/* mobile devices */
+@media screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
+  }
+  #box {
+    height: 250px;
+    width: 250px;
+  }
+}
