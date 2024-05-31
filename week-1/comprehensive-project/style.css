@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Source Sans 3", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+:root {
+  --nav-background-color: rgb(50, 50, 50);
+  --nav-link-color: rgb(0, 0, 0);
+  --nav-link-hover: rgb(225, 80, 80);
+  --pop-color: rgb(225, 80, 80);
+  --nav-font-size: 1.2rem;
+  --background-color: rgb(70, 70, 70);
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  background-color: var(--nav-background-color);
+  font-size: var(--nav-font-size);
+  align-items: center;
+  justify-content: space-around;
+  padding: 0.25rem 10%;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--nav-link-color);
+}
+
+nav a:hover {
+  color: var(--nav-link-hover);
+  transition: color 500ms;
+}
+
+section {
+  background-color: var(--background-color);
+}
+h1 {
+  color: var(--pop-color);
+}
