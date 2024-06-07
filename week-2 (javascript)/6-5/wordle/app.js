@@ -27,7 +27,7 @@ let playGame = async () => {
 		// parse the JSON string when we laod the data
 		answer = JSON.parse(localStorage.getItem("answer"));
 		total_words = JSON.parse(localStorage.getItem("total_words"));
-		console.log(total_words);
+		guesses = JSON.parse(localStorage.guesses) || [];
 	} else {
 		// if localStorage does not have an answer, get one from the API
 		answer = await getAnswerWord();
@@ -45,13 +45,10 @@ let getAnswerWord = async () => {
 		"https://api.jsonbin.io/v3/b/629f9937402a5b38021f6b38"
 	);
 	let wordJson = await response.json();
-	console.log(wordJson);
 	// round down random number to whole number
 	let randomIndex = Math.floor(Math.random() * wordJson.record.answers.length);
 
 	total_words = wordJson.record.allowed.concat(wordJson.record.answers);
-
-	console.log(total_words);
 
 	let answer = wordJson.record.answers[randomIndex];
 	return answer;
@@ -69,7 +66,7 @@ let updateGuesses = () => {
 		let result;
 
 		if (i < guesses.length) {
-			guesses_parent_div.classList.add("guessed");
+			g_child_div.classList.add("guessed");
 			result = checkWord(guesses[i]);
 		}
 		// make letters
@@ -128,11 +125,14 @@ let submitGuess = () => {
 	// test if we have used all our guesses
 	else if (guesses.length < 6) {
 		guesses.push(currentGuess);
+		// save guesses
+		localStorage.setItem("guesses", JSON.stringify(guesses));
 
 		if (currentGuess === answer) {
 			message_div.innerHTML = "YOU WIN YAY";
 		} else if (guesses.length === 6) {
-			message_div.innerHTML = "Womp Womp Loser :(";
+			message_div.innerHTML =
+				"Womp Womp Loser :( " + "The answer was: " + answer;
 		}
 	}
 };
@@ -148,7 +148,6 @@ let setUpInputs = () => {
 			submitGuess();
 			currentGuess = "";
 		}
-		console.log(currentGuess);
 		updateGuesses();
 	};
 };
