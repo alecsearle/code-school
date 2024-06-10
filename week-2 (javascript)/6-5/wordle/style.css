@@ -44,6 +44,9 @@ body {
 	font-size: 20px;
 	font-weight: bold;
 	margin: 10px;
-	/* Added */
-	color: olive;
+}
+
+#restart {
+	font-size: 40px;
+	font-weight: bolder;
 }

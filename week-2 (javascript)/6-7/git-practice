@@ -1,0 +1,200 @@
+CMP-SCC112-1108:code-school d00424288$ git clone https://github.com/d00456429/saul-alec.git
+Cloning into 'saul-alec'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (6/6), done.
+CMP-SCC112-1108:code-school d00424288$ ls
+saul-alec week-1 (html:css) week-2 (javascript)
+CMP-SCC112-1108:code-school d00424288$ ls
+week-1 (html:css) week-2 (javascript)
+CMP-SCC112-1108:code-school d00424288$ cd week-2\ \(javascript\)/
+CMP-SCC112-1108:week-2 (javascript) d00424288$ ls
+6-3 6-4 6-5 6-6 6-7 git-names saul-alec
+CMP-SCC112-1108:week-2 (javascript) d00424288$ cd saul-alec
+CMP-SCC112-1108:saul-alec d00424288$ ls
+README.md readme
+CMP-SCC112-1108:saul-alec d00424288$ git branch
+
+- main
+  CMP-SCC112-1108:saul-alec d00424288$ git checkout -b develop
+  Switched to a new branch 'develop'
+  CMP-SCC112-1108:saul-alec d00424288$ git branch
+- develop
+  main
+  CMP-SCC112-1108:saul-alec d00424288$ git checkout -b alec develop
+  Switched to a new branch 'alec'
+  CMP-SCC112-1108:saul-alec d00424288$ git branch
+- alec
+  develop
+  main
+  CMP-SCC112-1108:saul-alec d00424288$ vim alec.txt
+  CMP-SCC112-1108:saul-alec d00424288$ git add alec.txt
+  CMP-SCC112-1108:saul-alec d00424288$ git commit -m "push name to sub branch"
+  [alec ef9cadc] push name to sub branch
+  Committer: Alec Searle <d00424288@CMP-SCC112-1108.local>
+  Your name and email address were configured automatically based
+  on your username and hostname. Please check that they are accurate.
+  You can suppress this message by setting them explicitly:
+
+      git config --global user.name "Your Name"
+      git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+1 file changed, 1 insertion(+)
+create mode 100644 alec.txt
+CMP-SCC112-1108:saul-alec d00424288$ git branch
+
+- alec
+  develop
+  main
+  CMP-SCC112-1108:saul-alec d00424288$ git checkout develop
+  Switched to branch 'develop'
+  CMP-SCC112-1108:saul-alec d00424288$ git branch
+  alec
+- develop
+  main
+  CMP-SCC112-1108:saul-alec d00424288$ git merge alec
+  Updating 07af5c6..ef9cadc
+  Fast-forward
+  alec.txt | 1 +
+  1 file changed, 1 insertion(+)
+  create mode 100644 alec.txt
+  CMP-SCC112-1108:saul-alec d00424288$ git push -u develop
+  fatal: 'develop' does not appear to be a git repository
+  fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+CMP-SCC112-1108:saul-alec d00424288$ git push
+fatal: The current branch develop has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin develop
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+CMP-SCC112-1108:saul-alec d00424288$ git push -u origin develop
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 327 bytes | 327.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'develop' on GitHub by visiting:
+remote: https://github.com/d00456429/saul-alec/pull/new/develop
+remote:
+To https://github.com/d00456429/saul-alec.git
+
+- [new branch] develop -> develop
+  branch 'develop' set up to track 'origin/develop'.
+  CMP-SCC112-1108:saul-alec d00424288$ git branch
+  alec
+- develop
+  main
+  CMP-SCC112-1108:saul-alec d00424288$
+
+CMP-SCC112-1108:saul-alec d00424288$ git pull origin develop
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 5 (delta 2), reused 5 (delta 2), pack-reused 0
+Unpacking objects: 100% (5/5), 526 bytes | 105.00 KiB/s, done.
+From https://github.com/d00456429/saul-alec
+
+- branch develop -> FETCH_HEAD
+  ef9cadc..f3d1e67 develop -> origin/develop
+  Updating ef9cadc..f3d1e67
+  Fast-forward
+  saul.txt | 1 +
+  1 file changed, 1 insertion(+)
+  create mode 100644 saul.txt
+  CMP-SCC112-1108:saul-alec d00424288$
+
+///////////
+
+CMP-SCC112-1108:saul-alec d00424288$ git checkout alec
+Switched to branch 'alec'
+CMP-SCC112-1108:saul-alec d00424288$ git branch
+
+- alec
+  develop
+  main
+  CMP-SCC112-1108:saul-alec d00424288$ git add alec
+  fatal: pathspec 'alec' did not match any files
+  CMP-SCC112-1108:saul-alec d00424288$ git add .
+  CMP-SCC112-1108:saul-alec d00424288$ git commit -m "index & style"
+  [alec a3f09fd] index & style
+  Committer: Alec Searle <d00424288@CMP-SCC112-1108.local>
+  Your name and email address were configured automatically based
+  on your username and hostname. Please check that they are accurate.
+  You can suppress this message by setting them explicitly:
+
+      git config --global user.name "Your Name"
+      git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+2 files changed, 14 insertions(+)
+create mode 100644 index.html
+create mode 100644 style.css
+CMP-SCC112-1108:saul-alec d00424288$ git checkout develop
+Switched to branch 'develop'
+Your branch is up to date with 'origin/develop'.
+CMP-SCC112-1108:saul-alec d00424288$ git merge alec
+Merge made by the 'ort' strategy.
+index.html | 14 ++++++++++++++
+style.css | 0
+2 files changed, 14 insertions(+)
+create mode 100644 index.html
+create mode 100644 style.css
+CMP-SCC112-1108:saul-alec d00424288$ git push -u origin develop
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 733 bytes | 733.00 KiB/s, done.
+Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 1 local object.
+To https://github.com/d00456429/saul-alec.git
+f3d1e67..944e72d develop -> develop
+branch 'develop' set up to track 'origin/develop'.
+CMP-SCC112-1108:saul-alec d00424288$ git pull origin develop
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2), pack-reused 0
+Unpacking objects: 100% (4/4), 482 bytes | 120.00 KiB/s, done.
+From https://github.com/d00456429/saul-alec
+
+- branch develop -> FETCH_HEAD
+  944e72d..77dccfb develop -> origin/develop
+  Updating 944e72d..77dccfb
+  Fast-forward
+  app.js | 0
+  1 file changed, 0 insertions(+), 0 deletions(-)
+  create mode 100644 app.js
+  CMP-SCC112-1108:saul-alec d00424288$
+
+# MAKE NEW FILE ON "alec" AND SEND TO "develop"
+
+<make files>
+git checkout alec
+git add .
+git commit -m "message"
+git checkout develop
+git merge alec
+git pull origin develop
+git push -u origin develop
+
+# PULL CHANGES ON "develop"
+
+git pull origin develop

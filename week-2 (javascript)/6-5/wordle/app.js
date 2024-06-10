@@ -20,6 +20,7 @@ let answer;
 let total_words;
 let currentGuess = "";
 let guesses = [];
+let is_game_over = false;
 
 let playGame = async () => {
 	// check if local storage has a word already
@@ -130,11 +131,22 @@ let submitGuess = () => {
 
 		if (currentGuess === answer) {
 			message_div.innerHTML = "YOU WIN YAY";
+			is_game_over = true;
 		} else if (guesses.length === 6) {
 			message_div.innerHTML =
 				"Womp Womp Loser :( " + "The answer was: " + answer;
+			let restart_div = document.getElementById("restart");
+			restart_div.innerHTML = "Start Another? - press <ENTER>";
+			is_game_over = true;
 		}
+		// ADD ENTER CLICK THAT CALLS isGameOver() IF is_game_over === false
+		// isGameOver();
 	}
+};
+
+let isGameOver = () => {
+	localStorage.clear();
+	location.reload();
 };
 
 let setUpInputs = () => {
