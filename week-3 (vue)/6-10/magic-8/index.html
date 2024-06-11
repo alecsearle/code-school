@@ -28,6 +28,13 @@
 				v-show="isValidQuestion()">
 				Ask A Question
 			</button>
+			<ul>
+				<li v-for="(item, index) in history">
+					<p>Question: {{item.question}}</p>
+					<p>Answer: {{item.answer}}</p>
+					<button v-on:click="deleteItem(index)">X</button>
+				</li>
+			</ul>
 		</div>
 		<script src="app.js"></script>
 	</body>
