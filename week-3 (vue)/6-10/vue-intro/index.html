@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Vue Boilerplate</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<link
+			rel="stylesheet"
+			href="style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<h1>{{ h1text }}</h1>
+			<div>
+				<div
+					v-for="item in items"
+					v-bind:style="[item.show ? {backgroundColor: item.color} : {backgroundColor: '#fff'}]"
+					class="box"
+					v-on:click.self="toggleOnOrOff(item)">
+					{{ item.text }}
+					<p v-if="item.show">ON</p>
+					<p v-else>OFF</p>
+					<button @click="appendText(item)">Add Text</button>
+				</div>
+			</div>
+			<p v-if="showText">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			</p>
+			<button v-on:click="showHideText()">Toggle Text</button>
+		</div>
+		<script src="app.js"></script>
+	</body>
+</html>
