@@ -1,0 +1,27 @@
+[
+	{
+		"description": "Grocery Shopping",
+		"amount": 85.5,
+		"category": "Groceries"
+	},
+	{
+		"description": "Electricity Bill",
+		"amount": 120,
+		"category": "Utilities"
+	},
+	{
+		"description": "Monthly Rent",
+		"amount": 1500.0,
+		"category": "Rent"
+	},
+	{
+		"description": "Dining Out",
+		"amount": 45.75,
+		"category": "Food & Dining"
+	},
+	{
+		"description": "Gym Membership",
+		"amount": 35,
+		"category": "Health & Fitness"
+	}
+]
