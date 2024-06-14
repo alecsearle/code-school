@@ -23,10 +23,21 @@
 					type="text"
 					placeholder="Enter E-Mail"
 					v-model="email" />
-				<button @click="entry()">Record Address</button>
+				<button
+					v-if="name.length != 0 && email.length != 0 && !isEditing"
+					@click="addAddress()">
+					Record Address
+				</button>
+				<button
+					v-if="isEditing"
+					v-on:click="saveEdit()">
+					Save Address
+				</button>
 				<ul>
 					<li v-for="(item, index) in history">
 						<p>{{item.name}} {{item.email}}</p>
+						<button v-on:click="deleteAddress(index)">X</button>
+						<button v-on:click="editAddress(index)">edit</button>
 					</li>
 				</ul>
 			</div>

@@ -9,6 +9,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 2rem;
 }
 
 .container {
@@ -16,4 +17,10 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 1rem;
+}
+
+button {
+	height: 2rem;
+	width: 100%;
 }
