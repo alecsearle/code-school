@@ -1,5 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magic 8 Ball</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <h1>Magic 8</h1>
+      <div id="outerCircle">
+        <div id="innerCircle">{{ answer }}</div>
+      </div>
+      <p v-if="isValidQuestion()">Ask Question</p>
+      <p v-else="">Not a valid question</p>
+      <input type="text" placeholder="Ask a question..." v-model="question" />
+      <button @click="askQuestion()" v-show="isValidQuestion()">
+        Ask Question
+      </button>
+    </div>
+    <script src="app.js"></script>
+  </body>
+=======
 	<head>
 		<meta charset="UTF-8" />
 		<meta
@@ -38,4 +62,5 @@
 		</div>
 		<script src="app.js"></script>
 	</body>
+>>>>>>> 04a4f659e657006c4ba2dfceea1c82af6baf699a
 </html>
