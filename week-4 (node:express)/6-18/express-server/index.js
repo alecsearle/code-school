@@ -1,5 +1,6 @@
 // npm init
 // npm install express
+// node index.js
 
 const express = require("express");
 const app = express();
