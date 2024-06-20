@@ -1,51 +1,85 @@
+// node --env-file=.env index.js
+const cors = require("cors");
 const express = require("express");
 const app = express();
 const model = require("./model");
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/expenses", async (request, response) => {
-	let expenses = await model.Expense.find();
-	response.setHeader("Access-Control-Allow-Origin", "*");
-	response.json(expenses);
+	try {
+		let expenses = await model.Expense.find();
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.json(expenses);
+	} catch (error) {
+		console.log(error);
+		response.status(400).send("Generic Error");
+	}
 });
 
-app.post("/expenses", (request, response) => {
+app.post("/expenses", async (request, response) => {
 	const data = request.body;
-
-	let newExpense = new model.Expense({
-		category: data.category,
-		amount: data.amount,
-		description: data.description,
-	});
-
-	newExpense
-		.save()
-		.then(() => {
-			response.setHeader("Access-Control-Allow-Origin", "*");
-			response.status(201).send("Added");
-		})
-		.catch(() => {
-			response.status(400).send("Something failed when adding expense");
+	try {
+		let newExpense = new model.Expense({
+			category: data.category,
+			amount: data.amount,
+			description: data.description,
 		});
+
+		let error = newExpense.validateSync();
+		if (error) {
+			response.status(400).json(error);
+			return;
+		}
+
+		await newExpense.save();
+		response.status(201).json(newExpense);
+	} catch (error) {
+		response.status(400).send("Generic Error");
+	}
 });
 
-app.delete("/expenses/:id", (req, res) => {
-	console.log("Delete for single expense");
-	console.log(req.params.id);
-	model.Expense.findOneAndDelete({ _id: req.params.id })
-		.then((expense) => {
-			if (expense) {
-				res.status(200).send("Removed");
-			} else {
-				console.log("Expense not found");
-				res.status(404).send("Expense not found");
-			}
-		})
-		.catch(() => {
-			console.log("Bad request (GET by ID.");
-			res.status(400).send("Expense not found");
+app.delete("/expenses/:id", async (req, response) => {
+	try {
+		console.log("Delete for single expense");
+		console.log(req.params.id);
+		let isDeleted = await model.Expense.findOneAndDelete({
+			_id: req.params.id,
 		});
+		if (!isDeleted) {
+			response.status(404).send("Could not find expense");
+			return;
+		}
+
+		response.status(200).send("expense deleted");
+	} catch (error) {
+		response.status(400).send("Generic Error");
+	}
+});
+
+app.put("/expenses/:id", async (request, response) => {
+	try {
+		const updatedExpense = {
+			category: request.body.category,
+			amount: request.body.amount,
+			description: request.body.description,
+		};
+		let putExpense = await model.Expense.findByIdAndUpdate(
+			{ _id: request.params.id },
+			updatedExpense,
+			{
+				new: true,
+			}
+		);
+		if (!putExpense) {
+			response.status(404).send("Could not update expense");
+			return;
+		}
+		response.status(204).json(putExpense);
+	} catch (error) {
+		response.status(400).send("Generic Error");
+	}
 });
 
 // start your server on whatever port you want

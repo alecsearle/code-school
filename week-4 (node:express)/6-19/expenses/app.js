@@ -1,4 +1,4 @@
-const URL = "https://expenses.codeschool.cloud";
+const URL = "http://localhost:8080";
 
 Vue.createApp({
 	data() {
@@ -122,7 +122,7 @@ Vue.createApp({
 			};
 			let expId = this.expenses[index]._id;
 			let response = await fetch(`${URL}/expenses/${expId}`, requestOptions);
-			if (response.status == 204) {
+			if (response.status == 200) {
 				this.expenses.splice(index, 1);
 			} else {
 				alert("Failed to delete expense");
