@@ -1,0 +1,12 @@
+install HomeBrew
+install node
+^^wk4 README.md^^
+set up mongoDB
+set up Postman
+
+install express, cors, mongoose when creating .js'
+npm init
+npm install express mongoose cors
+
+DBPASSWORD="mongodb+srv://alecsearle:<password>@cluster0.zmfz6pq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+put that ^ in a .env file and ignore .env and -node in .gitignore file
