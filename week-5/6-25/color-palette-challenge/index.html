@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Color Palette</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<link
+			rel="stylesheet"
+			href="style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<h1>RGB Color Palette</h1>
+			<div class="addColor">
+				<span>Red</span>
+				<input
+					type="number"
+					min="0"
+					max="255"
+					v-model="newColor.red" />
+				<span>Green</span>
+				<input
+					type="number"
+					min="0"
+					max="255"
+					v-model="newColor.green" />
+				<span>Blue</span>
+				<input
+					type="number"
+					min="0"
+					max="255"
+					v-model="newColor.blue" />
+				<button @click="addColor()">Add Color!</button>
+				<div
+					class="current-color"
+					v-bind:style="{backgroundColor: rgbString}"></div>
+			</div>
+			<div id="color-container">
+				<div v-for="color in palette">
+					<div
+						class="circle"
+						v-bind:style="{backgroundColor: color}"></div>
+					{{ color }}
+				</div>
+			</div>
+		</div>
+		<script src="app.js"></script>
+	</body>
+</html>

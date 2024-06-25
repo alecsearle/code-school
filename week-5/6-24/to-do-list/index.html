@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>To-Do List</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<link
+			rel="stylesheet"
+			href="style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<div id="top-bar">
+				<h1>Todo List</h1>
+			</div>
+			<div class="add-item">
+				<br />
+				<h2>Add Item</h2>
+				Description
+				<input
+					type="text"
+					class="input-field"
+					v-model="newTodo.description" />
+				Category
+				<input
+					type="text"
+					class="input-field"
+					v-model="newTodo.category" />
+				<button
+					class="button"
+					@click="addTodo()">
+					Add
+				</button>
+				<p>Filter by Category</p>
+				<div id="search-bar">
+					<input
+						type="text"
+						placeholder="Search..."
+						v-model="searchInput" />
+				</div>
+			</div>
+
+			<div
+				id="list"
+				v-for="(todo,index) in list">
+				<div>{{todo.description}}</div>
+				<div>{{todo.category}}</div>
+			</div>
+		</div>
+		<script src="app.js"></script>
+	</body>
+</html>
