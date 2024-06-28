@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Joke Generator</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<link
+			rel="stylesheet"
+			href="style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<div id="header">
+				<h1>Joke Generator</h1>
+				<div id="current-joke">
+					<h3>Joke of the Day:</h3>
+					<p>{{ curSetup }}</p>
+					<p>{{ curPunchline }}</p>
+					<button @click="newJoke()">New Joke</button>
+				</div>
+			</div>
+			<div id="listOfJokes">
+				<input
+					type="text"
+					placeholder="Search Jokes" />
+				<div v-for="joke in jokes_list">
+					<p>{{ joke.setup }}</p>
+					<p>{{ joke.punchline }}</p>
+				</div>
+			</div>
+		</div>
+		<script src="app.js"></script>
+	</body>
+</html>
