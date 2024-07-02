@@ -15,6 +15,16 @@ app.get("/users", async (request, response) => {
 	}
 });
 
+app.get("/servers", async (request, response) => {
+	try {
+		let servers = await model.Server.find().populate("members", "-password");
+		response.send(servers);
+	} catch (error) {
+		console.log(error);
+		response.status(500).send("Server error");
+	}
+});
+
 app.post("/users", async (request, response) => {
 	try {
 		let newUser = await new model.User({
@@ -41,32 +51,24 @@ app.post("/users", async (request, response) => {
 	}
 });
 
-app.get("/games", async (request, response) => {
+app.post("/servers", async (request, response) => {
 	try {
-		let games = await model.Game.find();
-		response.send(games);
-	} catch (error) {
-		response.status(500).send("Server error");
-	}
-});
-
-app.post("/games", async (request, response) => {
-	try {
-		let newGame = await new model.Game({
+		let newServer = new model.Server({
 			name: request.body.name,
-			hours: request.body.hours,
+			memberes: request.body.members, // This should be an array of user IDs
 		});
 
-		const error = await newGame.validateSync();
-
+		// Validate the new server
+		const error = newServer.validateSync();
 		if (error) {
-			response.status(422).send(error);
-			return;
+			return response.status(422).json(error.errors);
 		}
+		await newServer.populate("members", "name email username");
+		await newServer.save();
 
-		await newGame.save();
-		response.status(201);
+		response.status(201).json(newServer);
 	} catch (error) {
+		console.error(error);
 		response.status(500).send("Server error");
 	}
 });

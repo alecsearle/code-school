@@ -7,34 +7,53 @@ mongoose.connect(process.env.DBPASSWORD);
 const UserSchema = Schema({
 	email: {
 		type: String,
-		required: [true, "User MUST have an email"],
-	},
-	name: {
-		type: String,
-		required: [true, "User MUST have a name"],
+		required: [true, "user must have an email"],
 	},
 	password: {
 		type: String,
-		required: [true, "User MUST have a password"],
+		required: [true, "user must have a password"],
 	},
-	username: {
+	name: {
 		type: String,
-		required: [true, "User MUST have a username"],
 	},
-	account_age: {
-		type: Number,
+});
+
+const QuizSchema = Schema({
+	owner: {
+		type: Schema.Types.ObjectId,
+		ref: "User",
+		required: [true, "quiz must have owner"],
 	},
+	title: { type: String, required: [true, "quiz must have title"] },
+	description: { type: String },
+	questions: [
+		{
+			questionText: {
+				type: String,
+			},
+			possibleChoices: [
+				{
+					answerText: {
+						type: String,
+					},
+					isCorrect: {
+						type: Boolean,
+					},
+				},
+			],
+		},
+	],
 });
 
 const ServerSchema = {
 	name: {
 		type: String,
-		required: [true, "Server MUST have a name."],
+		required: [true, "server must have a name"],
 	},
 	members: [{ type: Schema.Types.ObjectId, ref: "User" }],
 };
 
-UserSchema.methods.hashPassword = async function (password) {
+UserSchema.methods.setPassword = async function (password) {
 	try {
 		let hashedPassword = await bcrypt.hash(password, 12);
 		this.password = hashedPassword;
@@ -42,16 +61,16 @@ UserSchema.methods.hashPassword = async function (password) {
 };
 
 UserSchema.methods.verifyPassword = async function (password) {
-	// first param is the plain password from user
-	// second param is hashed password stored for user
 	let isGood = await bcrypt.compare(password, this.password);
 	return isGood;
 };
 
 const User = mongoose.model("User", UserSchema);
 const Server = mongoose.model("Server", ServerSchema);
+const Quiz = mongoose.model("Quiz", QuizSchema);
 
 module.exports = {
 	User,
 	Server,
+	Quiz,
 };
